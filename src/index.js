@@ -1,46 +1,33 @@
 const core = require('@actions/core');
 const nodemailer = require('nodemailer');
-const { google } = require('googleapis');
 
 async function run() {
   try {
-    // Input dalla Action
-    const clientId = core.getInput('client-id');
-    const clientSecret = core.getInput('client-secret');
-    const refreshToken = core.getInput('refresh-token');
-    const userEmail = core.getInput('user-email');
-    const toEmail = core.getInput('to-email');
-    const subject = core.getInput('subject') || 'Nuova email da GitHub Action';
-    const body = core.getInput('body') || 'Ciao! Questa è una email inviata dalla GitHub Action.';
+    // Legge input dalla Action
+    const smtpHost = core.getInput('smtp-host');        // es. smtp.gmail.com
+    const smtpPort = parseInt(core.getInput('smtp-port')); // es. 465
+    const smtpUser = core.getInput('smtp-user');        // email completa
+    const smtpPass = core.getInput('smtp-pass');        // password o App Password
+    const toEmail = core.getInput('to-email');          // destinatario
+    const subject = core.getInput('subject') || 'GitHub Action Email';
+    const body = core.getInput('body') || 'Hello from GitHub Action!';
 
-    // Setup OAuth2
-    const oAuth2Client = new google.auth.OAuth2(
-      clientId,
-      clientSecret,
-      'https://developers.google.com/oauthplayground' // redirectUri
-    );
-    oAuth2Client.setCredentials({ refresh_token: refreshToken });
-
-    const accessToken = await oAuth2Client.getAccessToken();
-
-    // Configura nodemailer
+    // Crea il transporter SMTP
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465, // true per 465, false per altri
       auth: {
-        type: 'OAuth2',
-        user: userEmail,
-        clientId,
-        clientSecret,
-        refreshToken,
-        accessToken: accessToken.token,
+        user: smtpUser,
+        pass: smtpPass,
       },
     });
 
     // Invia la mail
     const info = await transporter.sendMail({
-      from: `GitHub Action <${userEmail}>`,
+      from: smtpUser,
       to: toEmail,
-      subject,
+      subject: subject,
       text: body,
     });
 
