@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Send SMTP Email
-        uses: pierangelo/send-mail-action@main
+        uses: pconteo/send-mail-action@main
         with:
           smtp-host: smtp.gmail.com
           smtp-port: 465
