@@ -1,0 +1,34 @@
+name: 'Send Gmail Email'
+description: 'Invia una email tramite Gmail usando OAuth2'
+author: 'Pierangelo'
+
+inputs:
+  client-id:
+    description: 'Client ID OAuth2 di Google'
+    required: true
+  client-secret:
+    description: 'Client Secret OAuth2 di Google'
+    required: true
+  refresh-token:
+    description: 'Refresh token OAuth2 generato per l\'account Gmail'
+    required: true
+  user-email:
+    description: 'Email dell\'account Gmail che invia il messaggio'
+    required: true
+  to-email:
+    description: 'Destinatario della mail'
+    required: true
+  subject:
+    description: 'Oggetto della mail'
+    required: false
+  body:
+    description: 'Corpo della mail'
+    required: false
+
+outputs:
+  message-id:
+    description: 'ID del messaggio inviato'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
