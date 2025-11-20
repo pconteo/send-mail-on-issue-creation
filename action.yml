@@ -10,13 +10,13 @@ inputs:
     description: 'SMTP port'
     required: true
   smtp-user:
-    description: 'Email dell\'account mittente'
+    description: 'Email del mittente'
     required: true
   smtp-pass:
-    description: 'Password o App Password dell\'account mittente'
+    description: 'Password o App Password del mittente'
     required: true
   to-email:
-    description: 'Destinatario della mail'
+    description: 'Email destinatario'
     required: true
   subject:
     description: 'Oggetto della mail'
