@@ -18,5 +18,8 @@ jobs:
           smtp-pass: ${{ secrets.SMTP_PASS }}
           to-email: pierangelo.conteo@exprivia.com, pierangelo.conteo@live.com
           subject: 'Nuova Issue Aperta #${{ github.event.issue.number }}'
-          body: 'È stata aperta una nuova issue nel repository!'
+          body: |
+            È stata aperta una nuova issue nel repository!
+            Titolo: ${{ github.event.issue.title }}
+            Link all'issue: ${{ github.event.issue.html_url }}'
 
