@@ -16,7 +16,7 @@ jobs:
           smtp-port: 465
           smtp-user: ${{ secrets.SMTP_USER }}
           smtp-pass: ${{ secrets.SMTP_PASS }}
-          to-email: destinatario@example.com
+          to-email: pierangelo.conteo@exprivia.com
           subject: 'Nuova Issue Aperta'
           body: 'È stata aperta una nuova issue nel repository!'
 
