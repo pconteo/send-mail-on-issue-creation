@@ -21,5 +21,5 @@ jobs:
           body: |
             È stata aperta una nuova issue nel repository!
             Titolo: ${{ github.event.issue.title }}
-            Link all'issue: ${{ github.event.issue.html_url }}'
+            Link all'issue: ${{ github.event.issue.html_url }}
 
