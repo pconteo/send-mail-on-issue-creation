@@ -1,0 +1,19 @@
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Gmail Email
+        uses: pierangelo/send-mail-on-issue-creation@main
+        with:
+          client-id: ${{ secrets.GMAIL_CLIENT_ID }}
+          client-secret: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+          user-email: ${{ secrets.GMAIL_USER_EMAIL }}
+          to-email: destinatario@example.com
+          subject: 'Nuova Issue Aperta'
+          body: 'È stata aperta una nuova issue nel repository!'
