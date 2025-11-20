@@ -20,6 +20,8 @@ jobs:
           subject: 'Nuova Issue Aperta #${{ github.event.issue.number }}'
           body: |
             È stata aperta una nuova issue nel repository!
+            Numero: #${{ github.event.issue.number }}
             Titolo: ${{ github.event.issue.title }}
+            Creatore: ${{ github.event.issue.user.login }}
             Link all'issue: ${{ github.event.issue.html_url }}
 
